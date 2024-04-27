@@ -11,27 +11,33 @@ import seaborn as sns
 frames = [
     {
         'nodes': [1, 2, 3, 4, 5],
-        'edges': [(1, 2), (2, 3), (3, 4), (4, 5), (5, 1)]
+        'edges': [
+          (1, 2, {'weight': 1.0}),
+          (2, 3, {'weight': 1.0}),
+          (3, 4, {'weight': 1.0}),
+          (4, 5, {'weight': 1.0}),
+          (5, 1, {'weight': 1.0})
+          ]
     },
     {
         'nodes': [1, 2, 3, 4, 5],
-        'edges': [(1, 2), (2, 3), (3, 4), (4, 5), (5, 1), (1, 3)]
+        'edges': [
+          (1, 2, {'weight': 1.0}),
+          (2, 3, {'weight': 1.0}),
+          (3, 4, {'weight': 1.0}),
+          (4, 5, {'weight': 1.0}),
+          (5, 1, {'weight': 1.0})
+        ]
     },
     {
         'nodes': [1, 2, 3, 4, 5],
-        'edges': [(1, 2), (2, 3), (3, 4), (4, 5), (5, 1), (1, 3), (2, 4)]
-    },
-    {
-        'nodes': [1, 2, 3, 4, 5],
-        'edges': [(1, 2), (2, 3), (3, 4), (4, 5), (5, 1), (1, 3), (2, 4), (3, 5)]
-    },
-    {
-        'nodes': [1, 2, 3, 4, 5],
-        'edges': [(1, 2), (2, 3), (3, 4), (4, 5), (5, 1), (1, 3), (2, 4), (3, 5), (4, 1)]
-    },
-    {
-        'nodes': [1, 2, 3, 4, 5],
-        'edges': [(1, 2), (2, 3), (3, 4), (4, 5), (5, 1), (1, 3), (2, 4), (3, 5), (4, 1), (5, 2)]
+        'edges': [
+          (1, 2, {'weight': 1.0}),
+          (2, 3, {'weight': 1.0}),
+          (3, 4, {'weight': 1.0}),
+          (4, 5, {'weight': 1.0}),
+          (5, 1, {'weight': 1.0})
+        ]
     }
 ]
 
@@ -40,7 +46,9 @@ fig, ax = plt.subplots()
 sns.set_style('whitegrid')
 G = nx.Graph()
 G.add_nodes_from(frames[0]['nodes'])
-G.add_edges_from(frames[0]['edges'])
+for i in range(len(frames[0]['edges'])):
+    G.add_edge(frames[0]['edges'][i][0], frames[0]['edges'][i][1], weight=frames[0]['edges'][i][2]['weight'])
+# G.add_edges_from(frames[0]['edges'])
 pos = nx.spring_layout(G)
 nx.draw(G, pos, with_labels=True, node_size=700, node_color='skyblue', edge_color='gray', font_size=10, font_weight='bold')
 plt.tight_layout()
