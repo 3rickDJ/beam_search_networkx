@@ -115,5 +115,5 @@ def update(num):
     plt.tight_layout()
 
 # animacion
-ani = animation.FuncAnimation(fig, update, frames=len(frames), interval=1000, repeat=True, init_func=init)
+ani = animation.FuncAnimation(fig, update, frames=len(frames), interval=2500, repeat=True, init_func=init)
 plt.show()
