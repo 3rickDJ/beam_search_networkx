@@ -14,7 +14,7 @@ class Node:
         self.heuristic_value = 0
         self.attr = {}
         self.label = label
-    
+
     def add_neighbor(self, neighbor, speed, distance, retransmission):
         self.neighbors[neighbor] = {'speed': speed, 'distance': distance, 'retransmission': retransmission}
 
@@ -109,10 +109,10 @@ if __name__=='__main__':
     node_j = Node(10, 'J')
     # node_k = Node(11, 'K')
     # node_l = Node(12, 'L')
-    
+
     graph = Graph()
     [graph.add_node(node) for node in [node_a, node_b, node_c, node_d, node_e, node_f, node_g, node_h, node_i, node_j]]
-    
+
     graph.add_edge(node_a, node_b, speed=10, distance=50, retransmission=2)
     graph.add_edge(node_a, node_d, speed=100, distance=50, retransmission=1)
     graph.add_edge(node_b, node_c, speed=100, distance=5, retransmission=2)
@@ -130,5 +130,5 @@ if __name__=='__main__':
     frames, path = beam_search(graph, start_node, goal_node, beam=2)
     with open('frames.json', 'w') as f:
         json.dump(frames, f)
-    
+
     print(frames)
